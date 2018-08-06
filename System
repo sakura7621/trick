@@ -1,0 +1,45 @@
+1. kill a process on a port (e.g 9200)
+#show: lsof -i:9200
+#lsof -i -P
+#lsof -iTCP -sTCP:LISTEN -n -P
+kill -9 $(lsof -t -i:9200 -sTCP:LISTEN)
+
+2. Hardware info
+
+2.1 (MacOS)
+system_profiler SPHardwareDataType
+
+2.2 (RedHat)
+lscpu
+grep MemTotal /proc/meminfo #RAM
+grep "model name" /proc/cpuinfo #CPU
+dmidecode | less
+
+3 Down file:
+3.1 curl -O example.com/file.zip
+3.2 wget example.com/file.zip
+* (into a folder called home/test)
+wget -P /home/test www.xyz.com
+
+4. brew install node Mac
+sudo chown -R $(whoami) $(brew --prefix)/*
+brew link node
+
+5. unsave and return the last commit.
+git reset --hard HEAD
+git clean -f -d
+git pull
+
+6. Copy file from Local to Remote Server
+
+Use the scp command
+If you want to transfer a folder, just zip it first, we can unzip it later on.
+
+From your computer, run this:
+
+$ scp your_path_to_the_file/the_file root@10.x.y.z:~/
+Here, root is your account, and 10.x.y.z is the remote server's IP address. We're going to copy the_file to ~/ folder in the remote.
+
+Unzip file:
+$ unzip the_zip_file.zip -d destination_folder
+

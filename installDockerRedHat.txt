@@ -1,0 +1,35 @@
+Install Docker ver 17.03.2-ce on RED HAT server:
+
+
+Run these following commands one by one:
+
+1.	Remove old versions:
+
+sudo yum remove docker \
+                  docker-common \
+                  docker-selinux \
+                  docker-engine
+2.	Install docker version 17.03.2-CE
+2.1 Install required packages
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+
+2.2	Set up stable version
+sudo yum-config-manager \
+   --add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
+
+
+2.3	Install docker
+Notice: While installing, choose “yes” or “y” when being asked.
+For example: Is this ok [y/d/N]: y
+sudo yum install --setopt=obsoletes=0 \
+   docker-ce-17.03.2.ce-1.el7.centos.x86_64 \
+   docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch
+	
+3.	Check the installation
+docker -–version 
+
+You should see something like this:
+
+	Docker version 17.03.2-ce, build f5ec1e2

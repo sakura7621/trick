@@ -1,0 +1,40 @@
+1. Edit files in docker containers:
+
+docker cp <container>:/path/to/file.ext .
+
+which copies it to your local machine (to your current directory). 
+Then edit the file locally using your favorite editor, and then:
+
+docker cp file.ext <container>:/path/to/file.ext
+
+to replace the old file.
+
+2. docker ps
+Show all running containers
+
+3. docker exec -it container_name bash 
+Get into a container 
+
+4. Set Proxy in dockerfile
+ENV http_proxy=http://x.y.z.t:port
+ENV https_proxy=http://x.y.z.t:port
+ENV no_proxy=127.0.0.1,localhost,x.y.a.b
+
+5. delete all containers
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi $(docker images -q)
+
+6. delete stopped containers
+docker system prune
+
+7. Understand "From" in dockerfiles (multi-stage build)
+https://docs.docker.com/develop/develop-images/multistage-build/
+
+8. clear cache Symfony (Openloyalty project)
+docker-compose exec php bin/console cache:clear
+
+9. rebuild containers:
+docker-compose up --force-recreate
+#(but not docker-compose --build).

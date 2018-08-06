@@ -1,0 +1,94 @@
+* Set Proxy:
+(if have user/pass: http://username:password@proxy.mydomain.com:port)
+
+1. brew
+http_proxy=http://t.x.y.z:80 https_proxy=http://t.x.y.z:80 brew install PACKAGE
+
+2. git
+git config --global http.proxy http://t.x.y.z:80
+
+3. npm
+npm config set proxy http://t.x.y.z:80
+npm config set https-proxy http://t.x.y.z:80
+npm config set registry https://registry.npmjs.org/
+npm config set no_proxy 127.0.0.1,localhost,x.y.z.t
+#npm config set strict-ssl false
+
+
+4. curl
+curl -x http://t.x.y.z:80 https://example.com
+
+Permanent:
+4.1 Make a alias in ~/.bashrc file :
+alias curl="curl -x http://t.x.y.z:80"
+4.2 Another solution is to use ( the ~/.curlrc file (create it if it does not exist):
+proxy = http://t.x.y.z:80
+
+* Test connection: 
+curl -v https://github.com/Medium/phantomjs/releases/download/v2.1.1/phantomjs-2.1.1-linux-x86_64.tar.bz2
+curl -x http://t.x.y.z:80 -v https://github.com/Medium/phantomjs/releases/download/v2.1.1/phantomjs-2.1.1-linux-x86_64.tar.bz2
+
+5. Yarn
+yarn config set proxy http://t.x.y.z:80
+yarn config set https-proxy http://t.x.y.z:80
+
+6. Dockerfile
+
+ENV http_proxy=http://t.x.y.z:80
+ENV https_proxy=http://t.x.y.z:80
+ENV no_proxy=127.0.0.1,localhost,x.y.z.t
+
+7. bin/kibana-plugin install
+ http_proxy="http://t.x.y.z:80" bin/kibana-plugin install x-pack
+
+8. python ElasticSearch
+
+import os
+os.environ['no_proxy'] = '127.0.0.1,localhost'
+
+9. system proxyies
+
+Run "ps -p $$" at the command line to determine that you are, in fact, using a bash shell.
+Realize that you are in zsh, which means you should be editing your profile in .zshrc.
+
+nano ~/.zshrc
+
+export ALL_PROXY=http://t.x.y.z:80       
+export HTTP_PROXY=$ALL_PROXY
+export HTTPS_PROXY=$ALL_PROXY
+export FTP_PROXY=$ALL_PROXY
+export RSYNC_PROXY=$ALL_PROXY
+export http_proxy=$ALL_PROXY
+export https_proxy=$ALL_PROXY
+export ftp_proxy=$ALL_PROXY
+export rsync_proxy=$ALL_PROXY
+export NO_PROXY=.mydomain.com,.local,10.x.y.z
+
+
+10. Postman App:
+https://github.com/postmanlabs/postman-app-support/issues/2242
+
+11. yum
+
+nano /etc/yum.conf
+add these lines: 
+
+proxy=http://<Proxy-Server-IP-Address>:<Proxy_Port>
+proxy_username=<Proxy-User-Name>
+proxy_password=<Proxy-Password> 
+
+--------------
+
+* Unset Proxy
+
+2. git
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+3. npm
+nano ~/.npmrc
+default: empty
+
+5. Yarn
+
+
