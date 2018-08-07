@@ -40,6 +40,9 @@ From your computer, run this:
 $ scp your_path_to_the_file/the_file root@10.x.y.z:~/
 Here, root is your account, and 10.x.y.z is the remote server's IP address. We're going to copy the_file to ~/ folder in the remote.
 
-Unzip file:
++ Zip file:
+$ zip -r archive_name.zip folder_to_compress
+
++ Unzip file:
 $ unzip the_zip_file.zip -d destination_folder
 
