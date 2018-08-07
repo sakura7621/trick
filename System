@@ -15,20 +15,28 @@ grep MemTotal /proc/meminfo #RAM
 grep "model name" /proc/cpuinfo #CPU
 dmidecode | less
 
+
+
 3 Down file:
 3.1 curl -O example.com/file.zip
 3.2 wget example.com/file.zip
 * (into a folder called home/test)
 wget -P /home/test www.xyz.com
 
+
+
 4. brew install node Mac
 sudo chown -R $(whoami) $(brew --prefix)/*
 brew link node
+
+
 
 5. unsave and return the last commit.
 git reset --hard HEAD
 git clean -f -d
 git pull
+
+
 
 6. Copy file from Local to Remote Server
 
