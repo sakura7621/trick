@@ -44,9 +44,9 @@ Use the scp command
 If you want to transfer a folder, just zip it first, we can unzip it later on.
 
 From your computer, run this:
-$ scp your_path_to_the_file/the_file root@t.x.y.z:~/    #copy from local to server
+$ scp your_path_to_the_file/the_file root@t.x.y.z:~/    #copy from local to server (folder ~/)
 $ scp root@t.x.y.z:your_path_to_the_file/the_file ~/    #copy from sever to local
-Here, root is your account, and 10.x.y.z is the remote server's IP address. We're going to copy the_file to ~/ folder in the remote.
+Here, root is your account, and t.x.y.z is the remote server's IP address.
 
 + Zip file:
 $ zip -r archive_name.zip folder_to_compress
