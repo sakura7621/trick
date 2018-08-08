@@ -38,3 +38,18 @@ docker-compose exec php bin/console cache:clear
 9. rebuild containers:
 docker-compose up --force-recreate
 #(but not docker-compose --build).
+
+
+10. change default docker images location ?  
+
+Ensure docker stopped 
+$ systemctl stop docker
+
+By default, the daemon.js file does not exist, so create it:
+$ nano /etc/docker/daemon.json
+And add the following to tell docker to put all its files in this folder, e.g:
+
+{
+  "graph":"/mnt/cryptfs/docker"
+}
+More: https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/#data-volumes-and-the-storage-driver
