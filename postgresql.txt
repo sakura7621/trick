@@ -1,0 +1,12 @@
+1/ login:
+$ su - postgres 
+
+or login with other user_account
+$ psql -U USER_ACCOUNT -p PORT
+
+
+2/ Backup database:
+$ pg_dump DBNAME -p PORT > DBNAME.bak
+$ ls -l #check
+More details: https://www.linode.com/docs/databases/postgresql/how-to-back-up-your-postgresql-database/
+
