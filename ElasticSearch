@@ -1,0 +1,17 @@
+1/ Snapshot and restore
+Error with "path.repo":
+
+In Ubuntu the elasticsearch directory configured directly in init script /etc/init.d/elasticsearch and then laucnhed via DAEMON_OPTS like :
+
+DAEMON_OPTS="-d -p $PID_FILE --default.config=$CONF_FILE --default.path.home=$ES_HOME --default.path.logs=$LOG_DIR --default.path.data=$DATA_DIR --default.path.work=$WORK_DIR --default.path.conf=$CONF_DIR"
+
+So for the moment I could fix the problem adding :
+
+REPO_DIR=/backup/es_backup_basic
+
+and
+
+DAEMON_OPTS="-d -p $PID_FILE --default.config=$CONF_FILE --default.path.home=$ES_HOME --default.path.logs=$LOG_DIR --default.path.data=$DATA_DIR --default.path.work=$WORK_DIR --default.path.conf=$CONF_DIR--default.path.repo=$REPO_DIR "
+
+It solved the problem... even it's not normal for me that ES does not get sense of /etc/elasticsearch/elasticsearch.yml settings.
+
