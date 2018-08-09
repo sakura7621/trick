@@ -54,3 +54,7 @@ $ zip -r archive_name.zip folder_to_compress
 + Unzip file:
 $ unzip the_zip_file.zip -d destination_folder
 
+
+
+7. list down disks:
+$ df -h
