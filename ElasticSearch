@@ -1,4 +1,4 @@
-1/ Snapshot and restore
+1/ Snapshot
 Error with "path.repo":
 
 #log:
@@ -24,3 +24,21 @@ REPO_DIR="path_to_store_backup"
 
 and
 DAEMON_OPTS="-d -p $PID_FILE --default.config=$CONF_FILE --default.path.home=$ES_HOME --default.path.logs=$LOG_DIR --default.path.data=$DATA_DIR --default.path.work=$WORK_DIR --default.path.conf=$CONF_DIR--default.path.repo=$REPO_DIR "
+
+
+
+
+2/ Restore:
+$ curl -XPOST "localhost:PORT/_snapshot/MY_BACKUP/snapshot_1/_restore"
+
+if error "because it's open", run 
+$ curl -X POST "localhost:PORT/_all/_close" 
+
+re-open if needed: 
+$ curl -X POST "localhost:PORT/my_index/_open"
+
+
+3/ Run groovy script with python:
+if error: "reason": "scripts of type [inline], operation [search] and lang [groovy] are disabled"
+-> put the 2 lines "script.inline: on" and "script.indexed: on" in elasticsearch.yml
+
