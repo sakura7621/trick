@@ -42,3 +42,6 @@ $ curl -X POST "localhost:PORT/my_index/_open"
 if error: "reason": "scripts of type [inline], operation [search] and lang [groovy] are disabled"
 -> put the 2 lines "script.inline: on" and "script.indexed: on" in elasticsearch.yml
 
+4/ can not curl from other machine:
+edit elasticsearch.yml:
+  network.bind_host: 0.0.0.0
