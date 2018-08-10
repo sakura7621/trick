@@ -45,3 +45,7 @@ if error: "reason": "scripts of type [inline], operation [search] and lang [groo
 4/ can not curl from other machine:
 edit elasticsearch.yml:
   network.bind_host: 0.0.0.0
+  
+  
+5/ get all data from a index using POST MAN
+[GET] http://x.y.z.y:PORT/THE_INDEX/_search?size=10000
