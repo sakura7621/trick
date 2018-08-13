@@ -1,12 +1,14 @@
-1/ login:
+1/ create a backup data:
+
 $ su - postgres 
+$ pg_dump DBNAME [-p PORT] > DBNAME.bak
 
-or login with other user_account
-$ psql -U USER_ACCOUNT -p PORT
+#or 
+#login and backup with other user_account
+$ psql -U USER_ACCOUNT [-p PORT] database > data.bak
 
 
-2/ Backup database:
-$ pg_dump DBNAME -p PORT > DBNAME.bak
+#check
 $ ls -l #check
 More details: https://www.linode.com/docs/databases/postgresql/how-to-back-up-your-postgresql-database/
 
