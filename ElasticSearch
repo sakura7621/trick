@@ -1,5 +1,16 @@
 1/ Snapshot
-Error with "path.repo":
+
+curl -X PUT "localhost:9200/_snapshot/my_backup" -H 'Content-Type: application/json' -d'
+{
+  "type": "fs",
+  "settings": {
+    "location": "my_backup_location"
+  }
+}
+'
+
+
+* Error with "path.repo":
 
 #log:
 $ cat /var/log/elasticsearch/elasticsearch.log
