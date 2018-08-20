@@ -9,6 +9,8 @@ curl -X PUT "localhost:9200/_snapshot/my_backup" -H 'Content-Type: application/j
 }
 '
 
+curl -XPUT localhost:8180/_snapshot/my_backup/snapshot_1
+
 
 * Error with "path.repo":
 
