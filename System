@@ -15,7 +15,8 @@ grep MemTotal /proc/meminfo #RAM
 grep "model name" /proc/cpuinfo #CPU
 dmidecode | less
 
-
+2.3 check the num of logical and physical cores on mac:
+sysctl hw.physicalcpu hw.logicalcpu
 
 3 Down file:
 3.1 curl -O example.com/file.zip
