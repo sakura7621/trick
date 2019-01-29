@@ -1,0 +1,11 @@
+start:  jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --port 8111
+
+
+
+When using Jupyter Notebook from the server, it is useful to run it in the background as follows to avoid various disconnection issues. I also like to use it on my local machine so that I don’t have to keep an open terminal window.
+
+nohup jupyter notebook &
+It gets a little tricky when we want to close it. I will first terminate the kernel and run the following commands to kill the corresponding process.
+(cd to the starting folder)
+lsof nohup.out
+kill -9 <PID>
