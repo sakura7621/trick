@@ -1,0 +1,273 @@
+scp /chau/checkIn/data/check_in_08th_city.csv [zdeploy@10.50.9.11](mailto:zdeploy@10.50.9.11):/data2/zmining/chaupm3
+
+scp -r [zdeploy@10.50.9.13](mailto:zdeploy@10.50.9.13):/data/zmining/sample_las/population/output_2410 /chau/
+
+---
+
+turn off cmon5:
+
+cpu11158@cpu11158:ps -ef | grep cmon5
+cpu11158 3741 2030 0 Th0221 ? 00:01:17 ZUDM_ZiDB64Common5/bin/zidb64serverd --daemon
+cpu11158 3776 2030 0 Th0221 ? 00:00:00 ZUDM_ZiDB64Common5/bin/zidb64serverd --daemon
+cpu11158 19160 3266 0 14:38 pts/19 00:00:00 grep --color=auto zidb64
+
+cpu11158@cpu11158:/chau/wte-rd.git/ZUDM_DBService$ kill -9 3741
+cpu11158@cpu11158:/chau/wte-rd.git/ZUDM_DBService$ kill -9 3776
+cpu11158@cpu11158:/chau/wte-rd.git/ZUDM_DBService$ ./run_cmon5.cmd
+
+## Pyspark
+
+    from pyspark import SparkContext
+    from pyspark.sql import SQLContext
+    sc = SparkContext("local[4]", "first app")
+    sqlContext = SQLContext(sc)
+    import pyspark.sql.functions as f
+    
+    df = sqlContext.read.parquet('hdfs://namenode162:9000/data/jobs/rnd/user_profile/sample/bank_lead_gen/hourly/lastid_behavior/call_video')
+    df = sqlContext.read.parquet('/data/rnd/chaupm3/full_class_regress_67m_renamed_new.parquet')w
+    
+    df.loc[df['column_name'] == some_value]
+    
+    df.filter((f.col('uid') == '122093180')).show()
+
+    spark = SparkSession \
+    .builder \
+    .appName("Protob Conversion to Parquet") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+    
+    df = spark.read.csv("/temp/proto_temp.csv")
+    
+    df.show()
+    
+    df.write.parquet("output/proto.parquet")
+
+    from pyspark import SparkContext
+    from pyspark.sql import SQLContext
+    sc = SparkContext("local[8]", "first app")
+    sqlContext = SQLContext(sc)
+    import pyspark.sql.functions as f
+    from pyspark.sql.functions import udf
+    df = sqlContext.read.parquet('hdfs://namenode162:9000')
+    /data/jobs/rnd/intermediate_data_parquet/hourly/LOG-DEVICE-INFO-TRACKING/2019/05/23
+    df.filter((f.col('uid') == '122093180')).show()
+    df.filter((f.col('ssid') == name)).show(100)
+    
+    temp = df.where(df.ssid.contains('THU DUNG HOTEL L'))
+    temp_df = temp.toPandas()
+    temp_df.head()
+
+### pyspark jupyter
+
+    from pyspark.sql import *
+    from pyspark.sql.functions import *
+    
+    builder = SparkSession.builder
+    builder = builder.config("spark.executor.memory", "8G")
+    builder = builder.config("spark.driver.memory", "8G")
+    builder = builder.config("spark.driver.maxResultSize", "8G")
+    
+    spark = (SparkSession
+    .builder
+    .master("local[2]")
+    .appName("EDA_videoCall")
+    .getOrCreate())
+    
+    sc = spark.sparkContext
+    
+    from pyspark.sql import SQLContext
+    sqlContext = SQLContext(sc)
+    ## spark.sparkContext._conf.getAll()
+
+### submit yarn pyspark:
+
+22.176: /zserver/zreader/packages/spark/bin/spark-submit --master yarn --deploy-mode cluster --executor-memory 1G --queue rnd --num-executors 1 --executor-cores 1 --driver-memory 1G /data/rnd/jupyter-notebook/chaupm3/test_pyspark.py
+
+## Something
+
+    import subprocess
+    dir_in = "hdfs://namenode162:9000/data/jobs/rnd/user_profile/sample/bank_lead_gen/hourly/lastid_behavior/chat_send_pc_web2/"
+    args = "hdfs dfs -ls -R " + dir_in + " | awk '{print $8}'"
+    
+    p = subprocess.Popen(args,
+    shell=True,
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT)
+    
+    for line in p.stdout.readlines():
+    print(line)
+
+## Rotate image
+
+    plt.figure(figsize=(10,10))
+    temp4= temp2[["score", "occupation_name"]]
+    g=sns.violinplot(x=temp4.occupation_name, y=temp4.score)
+    plt.xticks(rotation=90)
+
+---
+
+## submit task jar
+
+cd /chau/zudm_user_profile/spark-transforms
+#sbt assembly
+./export.sh
+
+22.176
+cd /home/rnd/chaupm3/spark_task
+
+/zserver/zreader/packages/spark/bin/spark-submit --master yarn-cluster --deploy-mode cluster --class com.vng.zing.zudm_user_profile.ss.OccupationSample --executor-memory 2G --queue rnd --num-executors 2 --executor-cores 2 --driver-memory 2G Spark-transforms-assembly-1.1.jar
+
+## Hadoop
+
+    hadoop fs -rm -r /data/jobs/rnd/user_profile/sample/chaupm3/result/income/sample/chu_tiem_vang_20190320
+    hadoop fs -rm -r hdfs://namenode162:9000/data/jobs/rnd/user_profile/sample/chaupm3/result/income/top_keywords/chu_tiem_vang_20190319
+    
+    hadoop fs -mkdir /data/jobs/rnd/user_profile/sample/chaupm3/banker_phonebook
+    hadoop fs -mkdir /data/jobs/rnd/user_profile/sample/bank_lead_gen/las_pmr_id
+    
+    hadoop fs -rm /data/jobs/rnd/user_profile/sample/bank_lead_gen/las_pmr_id/rich_medium_poor_sample.parquet
+    
+    hdfs dfs -put -r /data/rnd/jupyter-notebook/chaupm3/LAS/put_db_1to6_ver2 hdfs://namenode162:9000/data/jobs/rnd/user_profile/sample/chaupm3/result/income
+    hdfs dfs -get "/data/jobs/rnd/user_profile/sample/bank_lead_gen/hourly/las_pmr_behavior/"
+    
+    ~/view_log.sh application_1550652284388_291585
+    
+    hdfs dfs -put "/data/rnd/jupyter-notebook/LAS_mining/data/rich_medium_poor_sample.parquet" /data/jobs/rnd/user_profile/sample/bank_lead_gen/las_pmr_id/
+
+## rsyn
+
+step 1/ copy from zminer to 22.176 first
+22.176
+cd /data/rnd/chaupm3/
+nohup hdfs dfs -get /data/jobs/rnd/intermediate_data/d01/sample_las/authen/2018 &
+hdfs dfs -get /data/jobs/rnd/location_mining/project/density/result/samehome_union/2019/10/13
+
+/data/jobs/rnd/phonebook/mining/heuristicpreDB
+(check running: tailf nohup.out )
+
+step 2/ copy from 22.176 to 9.12
+9.12 or 9.13: cd /data/zmining/
+9.11 cd /data2/zmining)
+
+(copy src: /data/rnd/chaupm3/las_pmr_behavior (22.176)
+
+./rsync.sh chaupm3/13 .
+(remember the dot at the end)
+
+## list downs disks
+
+lsblk (list downs disks)
+df -h (list downs disks)
+
+## Size
+
+ls -lsh (size)
+du -hd 1 (-d 1: max depth = 1) (size)
+
+---
+
+## jupyter
+
+cd to the folder to start jupyter
+nohup jupyter notebook &
+nohup jupyter-notebook --ip=0.0.0.0 --no-browser --port=8888 &
+
+### install conda env
+
+**** new conda enviroment:
+
+    conda create -n py37_env python=3.7 -y
+    source activate py37_env
+    conda install notebook ipykernel -y
+    ipython kernel install --user --name=py37_env
+
+** watch GPU
+watch -n 0,1 nvidia-smi
+
+### turn off jupyter
+
+jupyter notebook list
+lsof -n -i4TCP:8888
+kill -9 [PID] to kill this process.
+
+close (option 2)
+lsof nohup.out
+kill -9 <PID>
+
+### Install Jupyterextension package
+
+jupyter list
+jupyter contrib nbextensions uninstall --user
+jupyter contrib nbextensions uninstall --sys-prefix
+
+pip install jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+pip install jupyter_nbextensions_configurator
+jupyter nbextensions_configurator enable
+
+bugs: [https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/25](https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/25) (uninstall then re-install)
+
+### Check after installation
+
+cd to juypter working folder:
+
+jupyter notebook list
+cd (to working folder of jupyter)
+tail nohup.out
+
+### Install theme for jupyter (optional)
+
+pip install jupyterthemes
+
+---
+
+## mlflow
+
+/chau$ mlflow ui --backend-store-uri ./MY_WORK/solar_flare/mlflow_store --port 5001
+
+mlflow server --host 0.0.0.0 --backend-store-uri /data/zmining/jupyter-notebook/MLFLOW_STORE --port 8999 --default-artifact-root sftp://zdata@10.50.9.12/upload &
+
+- set_tracking_uri: instead using "mlruns" foler, set other folders
+experiment in mlruns: like project
+
+**"oops" (should delete by terminal, 'cause any addition, deletion will cause error', ex: delete .ipynb file folder if using jupyter notebook to delete 1 experiment)*
+
+EDA_chat-mobile-Copy1.ipynb
+EDA_chat-pc.ipynb
+/data/zmining/jupyter-notebook/las-mining/notebooks/chaupm3/get_features
+
+## cut pdf file
+
+ sudo apt-get install qpdf
+pdf --pages input.pdf 1-10 -- input.pdf output.pdf
+
+---
+
+######################
+
+# print tree in folder :
+
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'
+
+---
+
+## Features for CS problem
+
+understand percentile: [http://10.50.9.12:8888/notebooks/chaupm3/Age/notebooks/featuretools/ver_3_semi_auto/step_bonus_understand_percentile.ipynb](http://10.50.9.12:8888/notebooks/chaupm3/Age/notebooks/featuretools/ver_3_semi_auto/step_bonus_understand_percentile.ipynb)
+
+### MultiIndex pandas
+
+hh2.columns = ["_".join(str(c) for c in column) for column in hh2.columns.values]
+hh2.reset_index(inplace=True)
+
+## count nums file in a folder:
+
+ls -F |grep -v / | wc -l
+ls | wc -l
+
+## pivot_table
+
+    ssid_set = pd.pivot_table(data=ssid_log_df, index="src_id", columns="diff_months", values="mac", aggfunc=set)
+    ssid_set = ssid_set.rename(columns=str).reset_index()
+    del ssid_set.columns.name
+    ssid_set = ssid_set.fillna({})
