@@ -119,30 +119,28 @@ cd /home/rnd/chaupm3/spark_task
 
 ## Hadoop
 
-    hadoop fs -rm -r /data/jobs/rnd/user_profile/sample/chaupm3/result/income/sample/chu_tiem_vang_20190320
-    hadoop fs -rm -r hdfs://namenode162:9000/data/jobs/rnd/user_profile/sample/chaupm3/result/income/top_keywords/chu_tiem_vang_20190319
+    hadoop fs -rm -r /data/jobs/rnd/user_profile/sample/chaupm3/result/income/sample/abc
     
-    hadoop fs -mkdir /data/jobs/rnd/user_profile/sample/chaupm3/banker_phonebook
-    hadoop fs -mkdir /data/jobs/rnd/user_profile/sample/bank_lead_gen/las_pmr_id
+    hadoop fs -mkdir /data/jobs/rnd/user_profile/sample/chaupm3/
     
-    hadoop fs -rm /data/jobs/rnd/user_profile/sample/bank_lead_gen/las_pmr_id/rich_medium_poor_sample.parquet
+    hadoop fs -rm /data/jobs/rnd/user_profile/sample/abc.parquet
     
-    hdfs dfs -put -r /data/rnd/jupyter-notebook/chaupm3/LAS/put_db_1to6_ver2 hdfs://namenode162:9000/data/jobs/rnd/user_profile/sample/chaupm3/result/income
-    hdfs dfs -get "/data/jobs/rnd/user_profile/sample/bank_lead_gen/hourly/las_pmr_behavior/"
+    hdfs dfs -put -r /data/rnd/jupyter-notebook/chaupm3/LAS/put_db_1to6_ver2 hdfs://namenode162:123/data/jobs/abc
+    hdfs dfs -get "/data/jobs/rnd/user_profile/sample/"
     
     ~/view_log.sh application_1550652284388_291585
     
-    hdfs dfs -put "/data/rnd/jupyter-notebook/LAS_mining/data/rich_medium_poor_sample.parquet" /data/jobs/rnd/user_profile/sample/bank_lead_gen/las_pmr_id/
+    hdfs dfs -put "/data/rnd/jupyter-notebook/LAS_mining/data/abc.parquet" /data/jobs/
 
 ## rsyn
 
 step 1/ copy from zminer to 22.176 first
 22.176
 cd /data/rnd/chaupm3/
-nohup hdfs dfs -get /data/jobs/rnd/intermediate_data/d01/sample_las/authen/2018 &
-hdfs dfs -get /data/jobs/rnd/location_mining/project/density/result/samehome_union/2019/10/13
+nohup hdfs dfs -get /data/jobs/ &
+hdfs dfs -get /data/jobs/rnd/location_mining/project/density
 
-/data/jobs/rnd/phonebook/mining/heuristicpreDB
+/data/jobs/rnd
 (check running: tailf nohup.out )
 
 step 2/ copy from 22.176 to 9.12
